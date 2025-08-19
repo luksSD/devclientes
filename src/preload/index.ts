@@ -12,6 +12,10 @@ declare global {
 const api = {
   onNewCustomer: (callback: () => void) => {
     ipcRenderer.on('new-customer', callback)
+
+    return () => {
+      ipcRenderer.off('new-customer', callback)
+    }
   }
 }
 
